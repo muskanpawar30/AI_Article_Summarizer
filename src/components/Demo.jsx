@@ -1,7 +1,7 @@
 import React,{ useState,useEffect } from "react";
 import {copy,linkIcon,loader,tick} from '../assets';
 import { useLazyGetSummaryQuery } from "../services/article";
-require('dotenv').config();
+
 const Demo = () => {
   const [article, setArticle] = useState({
     url:'',
