@@ -123,3 +123,46 @@
 }
 
 
+
+
+/* Adjust the flex layout for the container */
+.search-summary-container {
+  display: flex;
+  flex-direction: column; /* Default layout as column */
+  gap: 16px; /* Space between elements */
+  width: 100%;
+  max-width: 640px;
+  margin: auto;
+  transition: max-width 0.5s ease;
+}
+
+.search-section,
+.summary-section {
+  flex: 1; /* Ensure equal space for both sections */
+  margin: 0 8px; /* Add a small margin to create spacing between them */
+}
+
+.search-summary-container.show-summary {
+  flex-direction: row; /* Change to row when displaying the summary */
+  align-items: flex-start;
+  max-width: 100%; /* Align items at the top */
+}
+
+/* Adjust spacing for the summary box */
+.summary_box {
+  width: 100%;
+  max-width: none;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Center the summary box */
+}
+.summary_box.visible {
+  opacity: 1;
+  transform: translateY(0); /* Slide up animation */
+}
+
+/* Hidden state for the summary box */
+.summary_box.hidden {
+  opacity: 0;
+  transform: translateY(20px); /* Slide down animation */
+}
