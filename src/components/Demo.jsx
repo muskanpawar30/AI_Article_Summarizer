@@ -15,7 +15,6 @@ const Demo = () => {
   // RTK lazy query
   const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery();
 
-  // Load data from localStorage on mount
   useEffect(() => {
     const articlesFromLocalStorage = JSON.parse(
       localStorage.getItem("articles")
@@ -23,19 +22,6 @@ const Demo = () => {
     if (articlesFromLocalStorage) {
       setAllArticles(articlesFromLocalStorage);
     }
-
-    // Event listener to handle click outside
-    const handleClickOutside = (event) => {
-      if (summaryRef.current && !summaryRef.current.contains(event.target)) {
-        setShowSummary(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
   }, []);
 
   const handleSubmit = async (e) => {
@@ -56,14 +42,17 @@ const Demo = () => {
       const newArticle = { ...article, summary: data.summary };
       const updatedAllArticles = [newArticle, ...allArticles];
 
-      // Update state and local storage
       setArticle(newArticle);
       setAllArticles(updatedAllArticles);
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
       setShowSummary(true);
     }
   };
-
+  const handleCopy = (url) => {
+    setCopied(url);
+    navigator.clipboard.writeText(url);
+    setTimeout(() => setCopied(""), 3000); // Clear the copied state after 3 seconds
+  };
   return (
     <section
       className={`search-summary-container ${
@@ -71,7 +60,7 @@ const Demo = () => {
       }`}
     >
       {/* Search Section */}
-      <div className="flex flex-col w-full gap-2">
+      <div className="search-section flex flex-col w-full gap-2">
         <form
           className="relative flex justify-center items-center"
           onSubmit={handleSubmit}
@@ -124,7 +113,9 @@ const Demo = () => {
       {showSummary && (
         <div
           ref={summaryRef}
-          className={`summary_box ${showSummary ? "visible" : "hidden"}`}
+          className={`summary-section summary_box ${
+            showSummary ? "visible" : "hidden"
+          }`}
         >
           {isFetching ? (
             <img src={loader} alt="loader" className="w-20 h-20 object-contain" />

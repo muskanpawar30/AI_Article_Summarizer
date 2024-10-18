@@ -123,39 +123,32 @@
 }
 
 
-
-
-/* Adjust the flex layout for the container */
+/* Container for the search and summary sections */
 .search-summary-container {
   display: flex;
-  flex-direction: column; /* Default layout as column */
-  gap: 16px; /* Space between elements */
+  flex-direction: column;
+  gap: 16px;
   width: 100%;
   max-width: 640px;
   margin: auto;
-  transition: max-width 0.5s ease;
-}
-
-.search-section,
-.summary-section {
-  flex: 1; /* Ensure equal space for both sections */
-  margin: 0 8px; /* Add a small margin to create spacing between them */
+  transition: max-width 0.5s ease; /* Transition effect for width changes */
 }
 
 .search-summary-container.show-summary {
-  flex-direction: row; /* Change to row when displaying the summary */
+  flex-direction: row;
   align-items: flex-start;
-  max-width: 100%; /* Align items at the top */
+  max-width: 100%; /* Expand to full width when the summary is visible */
 }
 
 /* Adjust spacing for the summary box */
 .summary_box {
   width: 100%;
-  max-width: none;
+  max-width: 9000px; /*Larger size for the summary box */
   margin: 0 auto;
   opacity: 0;
-  transition: opacity 0.5s ease, transform 0.5s ease; /* Center the summary box */
+  transition: opacity 0.5s ease, transform 0.5s ease; /* Smooth fade-in effect */
 }
+
 .summary_box.visible {
   opacity: 1;
   transform: translateY(0); /* Slide up animation */
@@ -165,4 +158,19 @@
 .summary_box.hidden {
   opacity: 0;
   transform: translateY(20px); /* Slide down animation */
+}
+
+/* Assuming your CSS file includes something like this */
+
+.summary-section {
+  width: 100%; /* Ensure it takes full width */
+  padding: 1rem; /* Optional padding */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional shadow for better visibility */
+  border-radius: 8px; /* Optional rounded corners */
+  background-color: white; /* Background color */
+}
+
+.search-summary-container {
+  width: 100%; /* Ensure the container is also full width */
+  padding: 1rem; /* Optional padding for the container */
 }
