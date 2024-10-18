@@ -28,7 +28,7 @@ The AI Article Summarizer is a web-based application that automatically generate
     ```
 2. Navigate to the project directory:
     ```bash
-    cd ai-article-summarizer
+    cd ai-summarizer
     ```
 3. Install the dependencies:
     ```bash
