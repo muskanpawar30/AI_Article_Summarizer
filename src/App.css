@@ -37,6 +37,10 @@
   opacity: 0.4;
   filter: invert(1);
 }
+.customW{
+
+  width: 100vw;
+}
 
 .gradient {
   height: fit-content;
@@ -48,12 +52,12 @@
       hsla(215, 98%, 61%, 1) 0px,
       transparent 0%
     ),
-    radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
+    radial-gradient(at 97% 21%, rgb(248, 148, 196) 0px, transparent 50%),
     radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
     radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
     radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
-    radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-    radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+    radial-gradient(at 33% 50%, rgb(125, 162, 247) 0px, transparent 50%),
+    radial-gradient(at 79% 53%, rgb(244, 128, 161) 0px, transparent 50%);
   position: absolute;
   content: "";
   width: 100%;
@@ -72,7 +76,7 @@
 /* Tailwind Styles */
 
 .app {
-  @apply relative z-10 flex justify-center items-center flex-col max-w-7xl mx-auto sm:px-16 px-6;
+  @apply relative z-10 flex justify-items-center  flex-col max-w-full  sm:px-4 px-0;
 }
 
 .black_btn {
@@ -84,12 +88,15 @@
 }
 
 .orange_gradient {
-  @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
+  @apply bg-gradient-to-r from-pink-300  via-purple-300 to-purple-700 bg-clip-text text-transparent;
 }
 
 .desc {
   @apply mt-5 text-lg text-gray-600 sm:text-xl text-center max-w-2xl;
 }
+
+
+
 
 .url_input {
   @apply block w-full rounded-md border border-gray-200 bg-white py-2.5 pl-10 pr-12 text-sm shadow-lg font-satoshi font-medium focus:border-black focus:outline-none focus:ring-0;
@@ -112,5 +119,7 @@
 }
 
 .summary_box {
-  @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
+  @apply rounded-xl border  border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
 }
+
+

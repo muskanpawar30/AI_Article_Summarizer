@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
-
 import { copy, linkIcon, loader, tick } from "../assets";
 import { useLazyGetSummaryQuery } from "../services/article";
+
+//import '../App.css'
 
 const Demo = () => {
   const [article, setArticle] = useState({
     url: "",
     summary: "",
   });
+  const [btn,setButton] = useState(false)
   const [allArticles, setAllArticles] = useState([]);
   const [copied, setCopied] = useState("");
 
@@ -25,14 +27,24 @@ const Demo = () => {
     }
   }, []);
 
+  const handleClick = (item)=>{
+
+    setButton(true);
+    setArticle(item);
+  }
+
+              
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setButton(true);
 
     const existingArticle = allArticles.find(
       (item) => item.url === article.url
     );
 
-    if (existingArticle) return setArticle(existingArticle);
+    if (existingArticle)
+      return setArticle(existingArticle);
+    
 
     const { data } = await getSummary({ articleUrl: article.url });
     if (data?.summary) {
@@ -41,6 +53,7 @@ const Demo = () => {
 
       // update state and local storage
       setArticle(newArticle);
+     
       setAllArticles(updatedAllArticles);
       localStorage.setItem("articles", JSON.stringify(updatedAllArticles));
     }
@@ -60,9 +73,10 @@ const Demo = () => {
   };
 
   return (
-    <section className='mt-16 w-full max-w-xl'>
+    <section className={btn?'flex flex-row mt-16 gap-8  w-full max-w-xl':'flex flex-col mt-16 gap-8 w-full m-auto max-w-xl'}>
+
       {/* Search */}
-      <div className='flex flex-col w-full gap-2'>
+      <div className="flex flex-col w-full gap-2">
         <form
           className='relative flex justify-center items-center'
           onSubmit={handleSubmit}
@@ -95,7 +109,7 @@ const Demo = () => {
           {allArticles.reverse().map((item, index) => (
             <div
               key={`link-${index}`}
-              onClick={() => setArticle(item)}
+              onClick={() => handleClick(item)}
               className='link_card'
             >
               <div className='copy_btn' onClick={() => handleCopy(item.url)}>
@@ -114,25 +128,28 @@ const Demo = () => {
       </div>
 
       {/* Display Result */}
-      <div className='my-10 max-w-full flex justify-center items-center'>
+      <div className="flex flex-col w-full gap-2">
+      <div className='my-0 flex justify-center items-center'>
         {isFetching ? (
           <img src={loader} alt='loader' className='w-20 h-20 object-contain' />
         ) : error ? (
           <p className='font-inter font-bold text-black text-center'>
             Well, that wasn't supposed to happen...
             <br />
+            
             <span className='font-satoshi font-normal text-gray-700'>
               {error?.data?.error}
             </span>
+            
           </p>
         ) : (
           article.summary && (
-            <div className='flex flex-col gap-3'>
+            <div className=' flex flex-col gap-3'>
               <h2 className='font-satoshi font-bold text-gray-600 text-xl'>
                 Article <span className='blue_gradient'>Summary</span>
               </h2>
-              <div className='summary_box'>
-                <p className='font-inter font-medium text-sm text-gray-700'>
+              <div className='summary_box max-w-full'>
+                <p className=' font-inter customW max-w-xl  font-medium text-sm text-gray-700'>
                   {article.summary}
                 </p>
               </div>
@@ -140,8 +157,10 @@ const Demo = () => {
           )
         )}
       </div>
+    </div>
     </section>
   );
 };
 
 export default Demo;
+

@@ -1,3 +1,4 @@
+import React from "react";
 import {logo} from '../assets';
 
 const Hero = () => {
@@ -9,20 +10,20 @@ const Hero = () => {
       className='w-28 object-contain'/>
       <button
         type="button"
-        onClick={() => window.open("https://github.com/muskanpawar30")}
+        onClick={() => window.open("https://github.com/muskanpawar30","_blank")}
         className='black_btn'>
         GitHub
       </button>
       </nav>  
       <h1 className='head_text'>
-        Summerize Articles with <br className='max-md:hidden' />
+        Summarize Articles with <br className='max-md:hidden' />
         <span className='orange_gradient'>OpenAI GPT-4</span>
       </h1>
       <h2 className='desc'>
-        Simplify your reading with Summize,an open-source article summarizer that transforms lengthy articles into clear and concise summaries
+      Enhance your reading experience with Summize, an elegant open-source article summarizer. It transforms lengthy articles into clear and stylish summaries, making complex content easily digestible.
       </h2>
     </header>
-  )
-}
+  );
+};
 
 export default Hero
