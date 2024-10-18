@@ -5,6 +5,30 @@
 /* 
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
+/* Loader Styling */
+.loader {
+  position: fixed; /* Make sure the loader is positioned relative to the viewport */
+  top: 50%; /* Center the loader vertically */
+  left: 50%; /* Center the loader horizontally */
+  transform: translate(-50%, -50%); /* Ensure the loader is exactly in the center */
+  z-index: 9999; /* High z-index to be on top of other elements */
+  pointer-events: auto; /* Make sure it can receive pointer events if necessary */
+}
+
+.loader-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 10px; /* Adjust as needed */
+}
+
+/* .blur {
+  filter: blur(4px); 
+  pointer-events: none; 
+} */
 
 .main {
   width: 100vw;
@@ -14,6 +38,7 @@
   justify-content: center;
   padding: 120px 24px 160px 24px;
   pointer-events: none;
+  overflow-y: hidden;
 }
 
 .main:before {
