@@ -24,7 +24,7 @@ The AI Article Summarizer is a web-based application that automatically generate
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/muskanpawar30/ai_text_summarizer.git
+    git clone https://github.com/muskanpawar30/ai_article_summarizer.git
     ```
 2. Navigate to the project directory:
     ```bash
